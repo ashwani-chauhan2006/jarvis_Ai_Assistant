@@ -4,7 +4,6 @@ import pyttsx3
 import pyautogui
 import time
 import pyperclip
-
 # Initialize recognizer and text-to-speech engine
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
