@@ -4,6 +4,7 @@ import pyttsx3
 import pyautogui
 import time
 import pyperclip
+import datetime
 
 # Initialize recognizer and text-to-speech engine
 recognizer = sr.Recognizer()
@@ -115,6 +116,11 @@ def processcommand(c):
     elif "close" in c.lower():
           pyautogui.click (x=1881, y=21) 
           time.sleep(3)     
+    
+    elif "time" in c.lower():
+        # Get the current time in 12-hour format with AM/PM
+        current_time = datetime.datetime.now().strftime("%I:%M %p")
+        speak(f"The time is {current_time}") 
     
     elif "exit" in c.lower():
         speak("Goodbye sir i am going to sleep")
