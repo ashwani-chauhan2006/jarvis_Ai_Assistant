@@ -42,7 +42,7 @@ def processcommand(c):
         speak("opening instagram")
         webbrowser.open("https://www.instagram.com")        
 
-    elif "play music" in c.lower():
+    elif "music" in c.lower():
         speak("please tell me the song name")
         with sr.Microphone() as source:
             print("listening.......")
@@ -50,23 +50,12 @@ def processcommand(c):
             song_name = recognizer.recognize_google(audio).lower()
             print(f"song_name:{song_name}")
             time.sleep(1)
-            webbrowser.open(f"https://www.youtube.com/")
-            speak(f"playing {song_name} in youtube")
-        # it copy the song name to the clipboard
-            pyperclip.copy(song_name)
-            time.sleep(3)
-        # it click on the search bar of youtube
-            pyautogui.click  (x=559, y=224)       
-            time.sleep(3)
-        # it paste the song name from the clipboard
-            pyautogui.write(song_name) 
-            time.sleep(2)
-        # it click on the search button of youtube
-            pyautogui.press("enter")  
-            time.sleep(1)
-        # it click on the first song of the youtube
-            pyautogui.click(x=282, y=533)   
-    
+           # Open YouTube and search for the song
+            webbrowser.open(f"https://www.youtube.com/results?search_query={song_name}")
+            time.sleep(5)  # Wait for the page to load    
+        pyautogui.click(x=282, y=533)  
+        speak("Enjoy your music!")          
+         
     elif "message" in c.lower():
         # Get the message from the user
             speak("please tell me the message")
