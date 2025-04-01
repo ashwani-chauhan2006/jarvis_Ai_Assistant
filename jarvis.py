@@ -18,22 +18,27 @@ def speak(text):
 def processcommand(c):
     """Process the user's command."""
     if "open google" in c.lower():
+        print("opening google")
         speak("opening google")
         webbrowser.open("https://www.google.com")
 
     elif "open youtube" in c.lower():
+        print("opening youtube")
         speak("opening youtube")
         webbrowser.open("https://www.youtube.com")
 
     elif "open whatsapp" in c.lower():
+        print("opening whatsapp")
         speak("opening whatsapp")
         webbrowser.open("https://www.whatsapp.com")
 
     elif "open github" in c.lower():
+        print("opening github")
         speak("opening github")
         webbrowser.open("https://www.github.com")
 
     elif "open instagram" in c.lower():
+        print("opening instagram")
         speak("opening instagram")
         webbrowser.open("https://www.instagram.com")        
 
@@ -41,7 +46,7 @@ def processcommand(c):
         speak("please tell me the song name")
         with sr.Microphone() as source:
             print("listening.......")
-            audio = recognizer.listen(source, timeout=5, phrase_time_limit=5)
+            audio = recognizer.listen(source, timeout=3, phrase_time_limit=3)
             song_name = recognizer.recognize_google(audio).lower()
             print(f"song_name:{song_name}")
             time.sleep(1)
@@ -67,13 +72,13 @@ def processcommand(c):
             speak("please tell me the message")
             with sr.Microphone() as source:
                 print("listening.......")
-                audio = recognizer.listen(source, timeout=5, phrase_time_limit=5)
+                audio = recognizer.listen(source, timeout=3, phrase_time_limit=3)
                 message = recognizer.recognize_google(audio).lower()
                 print(f"message:{message}")
         # Get the contact name from the user
             speak("Please tell me the name of the contact.")
             with sr.Microphone() as source:  
-                audio = recognizer.listen(source, timeout=5, phrase_time_limit=5)
+                audio = recognizer.listen(source, timeout=2, phrase_time_limit=2)
                 contact = recognizer.recognize_google(audio).lower()
                 print(f"contact:{contact}")
                 speak(f"sending message to {contact}")            
@@ -101,21 +106,22 @@ def processcommand(c):
                 speak("Message sent successfully.")
     
     # it colose the page in which is open
-    elif "close" in c.lower():
+    elif "exit" in c.lower():
           pyautogui.click (x=1881, y=21)                
           time.sleep(3)         
     
     elif "time" in c.lower():
         # Get the current time in 12-hour format with AM/PM
         current_time = datetime.datetime.now().strftime("%I:%M %p")
+        print(f"The time is {current_time}") 
         speak(f"The time is {current_time}") 
     
-    elif "exit" in c.lower():
+    elif "switch off" in c.lower():
         speak("Goodbye i am going to sleep")
         exit()
 
     else:
-        speak("Sorry, I didn't understand that command.")        
+        speak("Sorry, I didn't understand ")        
     
 if __name__ == "__main__":
     speak("initialising jarvis......")
@@ -127,14 +133,14 @@ if __name__ == "__main__":
        try:
           with sr.Microphone() as source:
                print("listening......")
-               audio = r.listen(source, timeout =5, phrase_time_limit=5) 
+               audio = r.listen(source, timeout =2, phrase_time_limit=2) 
           word = r. recognize_google(audio)     
           if(word.lower()== "jarvis"):
                speak("yes sir")
                # Listen for the actual command
                with sr.Microphone()as source:
                     print("jarvis active")
-                    audio = r.listen(source, timeout=5, phrase_time_limit=5)
+                    audio = r.listen(source, timeout=2, phrase_time_limit=2)
                     command = r. recognize_google(audio).lower()                
                     # Process the command
                     processcommand(command) 
